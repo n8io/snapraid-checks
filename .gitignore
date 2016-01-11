@@ -1,0 +1,7 @@
+.pushbullet
+*.log
+drives
+temp
+tmp
+*.err
+*.smart-lock
