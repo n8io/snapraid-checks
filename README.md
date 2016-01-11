@@ -4,7 +4,7 @@
 1. `git clone git@github.com:n8io/snapraid-checks.git && cd snapraid-checks`
 
 ## Set script permissions
-1. `chmod a+x ./healthchecks.sh`
+1. `chmod a+x ./healthcheck.sh`
 1. `chmod a+x ./snapraid-sync.sh`
 1. `chmod a+x ./snapraid-scrub.sh`
 
@@ -15,7 +15,7 @@
 1. Hit `Cmd+X`
 1. Test notification: `./send-notifications.sh`
 
-## healthchecks.sh
+## healthcheck.sh
 This script runs a quick `smartctl` healthcheck on each drive it finds based upon a regex in the top of the script. Update as needed. Output goes into `last-healthcheck.log` and `last-healthcheck.err` accordingly. Sends a pushbullet notification on failure.
 
 ## snapraid-sync.sh
