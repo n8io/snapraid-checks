@@ -1,5 +1,7 @@
 # snapraid-checks
 
+The following commands were tested as `root`. Run at your own risk.
+
 ## Clone
 1. `git clone git@github.com:n8io/snapraid-checks.git && cd snapraid-checks`
 
