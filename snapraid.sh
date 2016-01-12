@@ -2,7 +2,7 @@
 NOTIFICATION_SCRIPT='/root/diagnostics/send-notification.sh'
 DIFF_OUTPUT='/root/diagnostics/last-diff.log'
 SYNC_OUTPUT='/root/diagnostics/last-sync.log'
-DELETE_MAX_THRESHOLD=10
+DELETE_MAX_THRESHOLD=50
 SNAPRAID_BINARY='/usr/local/bin/snapraid'
 NOW=$(date +"%Y-%m-%d %r")
 
