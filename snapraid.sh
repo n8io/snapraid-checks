@@ -4,7 +4,10 @@ DIFF_OUTPUT='/root/diagnostics/last-diff.log'
 SYNC_OUTPUT='/root/diagnostics/last-sync.log'
 DELETE_MAX_THRESHOLD=50
 SNAPRAID_BINARY='/usr/local/bin/snapraid'
-NOW=$(date +"%Y-%m-%d %r")
+DAYOFWEEK_REMINDER='Wednesday'
+DAYOFWEEK=$(date "+%A")
+NOW=$(date "+%Y-%m-%d %r")
+MACHINE_NAME="[$(hostname)]"
 
 echo "Process started @ $NOW" > $DIFF_OUTPUT
 $SNAPRAID_BINARY diff >> $DIFF_OUTPUT
@@ -32,14 +35,16 @@ NOW=$(date +"%Y-%m-%d %r")
 echo "Process started @ $NOW" > $SYNC_OUTPUT
 $SNAPRAID_BINARY sync >> $SYNC_OUTPUT
 EXIT_CODE=$?
-NOW=$(date +"%Y-%m-%d %r")
+NOW=$(date "+%Y-%m-%d %r")
 echo "Process completed @ $NOW" >> $SYNC_OUTPUT
 
-if [ "$EXIT_CODE" -ne "0"  ]; then
+if [ "$EXIT_CODE" -ne "0" ]; then
   $NOTIFICATION_SCRIPT "SnapRAID Sync Issue Reported" "The last sync process reported a problem. Please investigate before the next scheduled sync."
   echo "Exited with code: $EXIT_CODE" >> $SYNC_OUTPUT
   cat $SYNC_OUTPUT
   exit $EXIT_CODE
+elif [ "$DAYOFWEEK" == "$DAYOFWEEK_REMINDER" ]; then
+  $NOTIFICATION_SCRIPT "Everything is OK" "Every $DAYOFWEEK_REMINDER $MACHINE_NAME likes to remind you that things are all good."
 fi
 
 echo "Sync complete OK" >> $SYNC_OUTPUT
@@ -49,4 +54,3 @@ echo "Exited with code: $EXIT_CODE" >> $SYNC_OUTPUT
 cat $SYNC_OUTPUT
 
 exit $EXIT_CODE
-
