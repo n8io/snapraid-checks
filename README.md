@@ -20,7 +20,7 @@ The following commands were tested as `root`. Run at your own risk.
 ## healthcheck.sh
 This script runs a quick `smartctl` healthcheck on each drive it finds based upon a regex in the top of the script. Update as needed. Output goes into `last-healthcheck.log` and `last-healthcheck.err` accordingly. Sends a pushbullet notification on failure.
 
-## snapraid-sync.sh
+## snapraid.sh
 Runs a `snapraid sync` and saves output into `last-sync.log`. Sends a pushbullet notification on failure.
 
 ## snapraid-scrub.sh
