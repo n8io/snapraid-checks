@@ -4,7 +4,7 @@ DIFF_OUTPUT='/root/diagnostics/last-diff.log'
 SYNC_OUTPUT='/root/diagnostics/last-sync.log'
 DELETE_MAX_THRESHOLD=50
 SNAPRAID_BINARY='/usr/local/bin/snapraid'
-DAYOFWEEK_REMINDER='Wednesday'
+DAYOFWEEK_REMINDER='Thursday'
 DAYOFWEEK=$(date "+%A")
 NOW=$(date "+%Y-%m-%d %r")
 MACHINE_NAME="[$(hostname)]"
@@ -43,7 +43,7 @@ if [ "$EXIT_CODE" -ne "0" ]; then
   echo "Exited with code: $EXIT_CODE" >> $SYNC_OUTPUT
   cat $SYNC_OUTPUT
   exit $EXIT_CODE
-elif [ "$DAYOFWEEK" == "$DAYOFWEEK_REMINDER" ]; then
+elif [ "$DAYOFWEEK" = "$DAYOFWEEK_REMINDER" ]; then
   $NOTIFICATION_SCRIPT "Everything is OK" "Every $DAYOFWEEK_REMINDER $MACHINE_NAME likes to remind you that things are all good."
 fi
 

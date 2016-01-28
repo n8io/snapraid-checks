@@ -33,4 +33,6 @@ POST_URI="\"${PUSHBULLET_URI}${PUSHBULLET_VERSION}/pushes\""
 
 CMD="curl $POST_REQ ${POST_URI} > /dev/null 2>&1"
 
+echo -n "Sending notification...."
 eval $CMD
+echo "sent."
