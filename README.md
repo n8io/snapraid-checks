@@ -26,6 +26,8 @@ Runs a `snapraid sync` and saves output into `last-sync.log`. Sends a pushbullet
 ## snapraid-scrub.sh
 Runs a `snapraid scrub` and saves the output into `last-scrub.log`. Sends a pushbullet notification on failure.
 
+## drives (generated)
+A file left over from drive checks. Helpful if you want to know the capacities and mount points of all your drives.
 
 ## TODO
 1. Add in depth short and long tests for S.M.A.R.T. monitoring
