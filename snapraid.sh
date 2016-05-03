@@ -1,4 +1,5 @@
 #!/bin/bash
+SNAPRAID_SETTINGS_FILE='/root/diagnostics/.snapraid-settings'
 NOTIFICATION_SCRIPT='/root/diagnostics/send-notification.sh'
 DIFF_OUTPUT='/root/diagnostics/last-diff.log'
 SYNC_OUTPUT='/root/diagnostics/last-sync.log'
@@ -9,8 +10,10 @@ DAYOFWEEK=$(date "+%A")
 NOW=$(date "+%Y-%m-%d %r")
 MACHINE_NAME="[$(hostname)]"
 
+source "$SNAPRAID_SETTINGS_FILE"
+
 echo "Process started @ $NOW" > $DIFF_OUTPUT
-$SNAPRAID_BINARY diff >> $DIFF_OUTPUT
+$SNAPRAID_BINARY diff $SNAPRAID_CONFIG_PARAMS >> $DIFF_OUTPUT
 EXIT_CODE=$? # 2 if there were diffs, 0 if no diffs, 1 if error
 
 NOW=$(date +"%Y-%m-%d %r")
@@ -33,7 +36,7 @@ fi
 
 NOW=$(date +"%Y-%m-%d %r")
 echo "Process started @ $NOW" > $SYNC_OUTPUT
-$SNAPRAID_BINARY sync >> $SYNC_OUTPUT
+$SNAPRAID_BINARY sync $SNAPRAID_CONFIG_PARAMS >> $SYNC_OUTPUT
 EXIT_CODE=$?
 NOW=$(date "+%Y-%m-%d %r")
 echo "Process completed @ $NOW" >> $SYNC_OUTPUT
@@ -44,7 +47,7 @@ if [ "$EXIT_CODE" -ne "0" ]; then
   cat $SYNC_OUTPUT
   exit $EXIT_CODE
 elif [ "$DAYOFWEEK" = "$DAYOFWEEK_REMINDER" ]; then
-  $NOTIFICATION_SCRIPT "Everything is OK" "Every $DAYOFWEEK_REMINDER $MACHINE_NAME likes to remind you that things are all good."
+  $NOTIFICATION_SCRIPT "Everything is OK" "Every $DAYOFWEEK_REMINDER $MACHINE_NAME likes to remind you that things are all good." >> $SYNC_OUTPUT
 fi
 
 echo "Sync complete OK" >> $SYNC_OUTPUT

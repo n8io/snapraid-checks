@@ -5,3 +5,5 @@ temp
 tmp
 *.err
 *.smart-lock
+.snapraidsettings
+.snapraid-settings

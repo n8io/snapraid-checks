@@ -6,7 +6,7 @@ MSG_BODY="${2:-This is only a test}"
 
 JSON="'{\"type\":\"$MSG_TYPE\",\"title\":\"$MSG_TITLE\",\"body\":\"$MSG_BODY\"}'"
 
-PUSHBULLET_CREDENTIAL_FILE='./.pushbullet'
+PUSHBULLET_CREDENTIAL_FILE='/root/diagnostics/.pushbullet'
 
 if [ ! -f "$PUSHBULLET_CREDENTIAL_FILE" ]; then
   echo "A Pushbullet credential file is needed to send notifications. See .pushbullet.example for format. Rename to .pushbullet after entering in your access token"
